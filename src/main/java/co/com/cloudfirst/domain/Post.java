@@ -13,12 +13,10 @@ import java.util.Date;
  */
 public class Post {
     private String id;
-    private String title;
     private String body;
     private Date  created;
     
-    public Post(String title, String body) {
-        this.title = title;
+    public Post( String body) {
         this.body = body;
         this.created = new Date();
     }
@@ -40,11 +38,7 @@ public class Post {
         this.created = created;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-    
-    
+  
 
     public String getBody() {
         return body;
@@ -54,9 +48,7 @@ public class Post {
         return created;
     }
 
-    public String getTitle() {
-        return title;
-    }
+   
     
     
     

@@ -8,10 +8,9 @@ package co.com.cloudfirst.service.impl;
 import co.com.cloudfirst.domain.Post;
 import co.com.cloudfirst.service.PostService;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,26 +18,25 @@ import org.springframework.stereotype.Service;
  * @author Carlos
  */
 @Service
-public class MapBasedPostService implements PostService {
-    private Map<String,Post> database;
+public class BasicPostServiceImpl implements PostService {
 
-    public MapBasedPostService() {
-        database = new ConcurrentHashMap<String,Post>();
+    private List<Post> database;
+
+    public BasicPostServiceImpl() {
+        database = new ArrayList<Post>();
     }
-    
-    
-    
+
     @Override
     public String save(Post post) {
         String id = UUID.randomUUID().toString();
         post.setId(id);
-        database.put(id, post);
+        database.add(post);
         return id;
     }
 
     @Override
     public List<Post> findAll() {
-        return new ArrayList<Post>(database.values());
-    } 
+        return new ArrayList<Post>(database);
+    }
 
 }

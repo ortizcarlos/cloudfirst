@@ -8,6 +8,7 @@ package co.com.cloudfirst.controller;
 import co.com.cloudfirst.domain.Post;
 import co.com.cloudfirst.service.PostService;
 import java.util.List;
+import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,6 +27,12 @@ public class PostController {
     
     @Autowired
     private PostService postService;
+    
+    @PostConstruct
+    public void init(){
+        postService.save(new Post("me siento bien"));
+        postService.save(new Post("genial"));
+    }
 
     @RequestMapping(value = "/post", method = RequestMethod.GET)
     public @ResponseBody
@@ -34,8 +41,8 @@ public class PostController {
     }
 
     @RequestMapping(value = "/post", method = RequestMethod.POST)
-    public ResponseEntity<String> save(@RequestParam("title") String title, @RequestParam("body") String body) {
-        String newPostId = postService.save(new Post(title,body));
-        return new ResponseEntity<String>(newPostId, HttpStatus.CREATED);
+    public ResponseEntity<String> save(@RequestParam("body") String body) {
+        String newPostId = postService.save(new Post(body));
+        return new ResponseEntity<String>(HttpStatus.CREATED);
     }
 }

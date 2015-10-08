@@ -10,8 +10,7 @@
 
     $routeProvider
       .when('/', {
-        //templateUrl: '/partials/newsTimeLine.html',
-        controller: 'PostController'
+          controller: 'PostController'
       })
       
 

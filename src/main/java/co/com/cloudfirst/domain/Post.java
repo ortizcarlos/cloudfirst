@@ -46,10 +46,5 @@ public class Post {
 
     public Date getCreated() {
         return created;
-    }
-
-   
-    
-    
-    
+    }    
 }
